@@ -19,11 +19,11 @@ git clone https://github.com/dhiego-bastos/raidiam-project.git
 
 ![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/18631d45-8c55-4028-b82c-5f6f1fe4c945)
 
-The instructions on how to clone repositories on GitHub can be found in [this link](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository);
+The instructions on how to clone repositories on GitHub can be found in [this link](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
 2 - Clone also the repository from https://github.com/CaiqueCoelho/vue-realworld-example-app and run its server.
 
-3 - Install Node.js on your local machine. Instructions for MacOS and Windows in this link: https://radixweb.com/blog/installing-npm-and-nodejs-on-windows-and-mac
+3 - Install Node.js on your local machine. Instructions for MacOS and Windows in this link: https://radixweb.com/blog/installing-npm-and-nodejs-on-windows-and-mac.
 
 4 - With the files on your pc, access the folder through the terminal with the command:
 
@@ -38,7 +38,7 @@ cd raidiam-project/Cypress\ Tests
 npm install cypress --save-dev
 ```
 
-(Maybe you will need to run sudo also)
+(Maybe you will need to run sudo).
 
 6 - Install npx if not installed already with the command:
 ```sh
