@@ -17,7 +17,7 @@ With it, the [Faker Library](https://fakerjs.dev/guide/usage.html) will be used 
 git clone https://github.com/dhiego-bastos/raidiam-project.git
 ```
 
-![Captura de Tela 2024-06-22 às 15 08 42](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/92b000ab-b6d6-4a29-aae7-da2f8b661552)
+![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/18631d45-8c55-4028-b82c-5f6f1fe4c945)
 
 The instructions on how to clone repositories on GitHub can be found in [this link](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository);
 
@@ -31,7 +31,7 @@ The instructions on how to clone repositories on GitHub can be found in [this li
 cd raidiam-project/Cypress\ Tests
 ```
 
-![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/3fdb3eaa-83ee-4fbd-80a8-88e4ddc96a1b)
+![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/ce16d47e-383a-4649-a118-494862d937f7)
 
 5 - Run 
 ```sh
@@ -63,25 +63,25 @@ npx cypress open
 
 9 - A new window will be displayed. Click on the “E2E Testing” button:
 
-![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/9ba3d113-3ff2-4bfc-ae11-997774787ac0)
+![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/1dac738d-04c4-4e61-9d70-1883566594ca)
 
 10 - Select the Electron, and click on “Start E2E Testing in Electron”:
 
-![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/42bdc3fc-4d33-46cc-861c-00776767cd87)
+![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/27fef4d1-9332-4044-872b-598672944100)
 
 PS: Other browsings are not working as the RealWorld API seems to have a Authorization issue after the user logs in on other browsers. Electron works fine.
 
 11 - The browser will be open and select the “Articles.cy.js”, “SignIn.cy.js” and “SignUp.cy.js” files to execute the test run:
 
-![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/b3c62103-f842-49ba-92ba-2fad60e1064b)
+![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/4d6beb4b-a030-4e14-9958-b7ba615dd9c1)
 
 12 - Wait for the test run to be finished:
 
-![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/2974b942-04d0-49c6-9a44-9f65496341f1)
+![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/422d13a4-df2b-4ae5-91d7-29e169061562)
 
 13 - After the run is over, the tests results will be displayed. The correct icon at the top of the screen will have the passed tests, the Red Cross, the failed ones, and the circle will be for skipped tests.
 
-![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/3cdecc3c-16b5-4685-b7a4-e4f945496a82)
+![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/46fb4609-d5ae-4f4e-86f0-ca6dd3fdfc6a)
 
 14 - You can now select the other tests and repeat the process.
 
@@ -90,4 +90,5 @@ PS: Other browsings are not working as the RealWorld API seems to have a Authori
 ```sh
 npx cypress run “cypress/e2e/specs/” 
 ```
-![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/7cbf22a7-32b0-48a7-a0b3-7dcb13172445)
+![image](https://github.com/dhiego-bastos/raidiam-project/assets/173289553/45725bcc-faef-497d-834d-4b72d1b7f047)
+
