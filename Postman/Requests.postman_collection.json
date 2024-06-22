@@ -1,0 +1,1290 @@
+{
+	"info": {
+		"_postman_id": "350ad61d-1f6d-4d0f-944d-836455be2ad4",
+		"name": "Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36457911"
+	},
+	"item": [
+		{
+			"name": "Basic Request",
+			"item": [
+				{
+					"name": "By Longitude and Latitude",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var longitude = parseFloat(pm.environment.get(\"lon\"));",
+									"var latitude = parseFloat(pm.environment.get(\"lat\"));",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"pm.test(\"Response body contains defined longitude\", function () {",
+									"    var responseBody = pm.response.json();",
+									"    pm.expect(responseBody.coord.lon).to.equal(longitude);",
+									"});",
+									"",
+									"pm.test(\"Response body contains defined latitude\", function () {",
+									"    var responseBody = pm.response.json();",
+									"    pm.expect(responseBody.coord.lat).to.equal(latitude);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.openweathermap.org/data/2.5/weather?lat={{lat}}&lon={{lon}}&appid={{API Key}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "{{lat}}"
+								},
+								{
+									"key": "lon",
+									"value": "{{lon}}"
+								},
+								{
+									"key": "appid",
+									"value": "{{API Key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "By City",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var city = pm.environment.get('city')",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"pm.test(\"Response body contains defined City\", function () {",
+									"    var responseBody = pm.response.json();",
+									"    pm.expect(responseBody.name).to.equal(city);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.openweathermap.org/data/2.5/weather?q={{city}}&appid={{API Key}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{{city}}"
+								},
+								{
+									"key": "appid",
+									"value": "{{API Key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "By City and Country",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var city = pm.environment.get('city')",
+									"var country = pm.environment.get('country_code')",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"pm.test(\"Response body contains defined City\", function () {",
+									"    var responseBody = pm.response.json();",
+									"    pm.expect(responseBody.name).to.equal(city);",
+									"});",
+									"",
+									"pm.test(\"Response body contains defined Country\", function () {",
+									"    var responseBody = pm.response.json();",
+									"    pm.expect(responseBody.sys.country).to.equal(country);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.openweathermap.org/data/2.5/weather?q={{city}},{{country_code}}&appid={{API Key}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{{city}},{{country_code}}"
+								},
+								{
+									"key": "appid",
+									"value": "{{API Key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "By City ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var id = parseInt(pm.environment.get('city_id'))",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"pm.test(\"Response body contains defined Country\", function () {",
+									"    var responseBody = pm.response.json();",
+									"    pm.expect(responseBody.id).to.equal(id);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.openweathermap.org/data/2.5/weather?id={{city_id}}&appid={{API Key}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{city_id}}"
+								},
+								{
+									"key": "appid",
+									"value": "{{API Key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "By ZipCode",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var zip = pm.environment.get('zip_code');",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.openweathermap.org/data/2.5/weather?zip={{zip_code}},{{country_code}}&appid={{API Key}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "zip",
+									"value": "{{zip_code}},{{country_code}}"
+								},
+								{
+									"key": "appid",
+									"value": "{{API Key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "With Unit of Measurement",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"pm.test(\"Response body contains temperature\", function () {",
+									"    pm.expect(pm.response.json().main.temp).to.exist;",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.openweathermap.org/data/2.5/weather?q={{city}},{{country_code}}&units={{units}}&appid={{API Key}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{{city}},{{country_code}}"
+								},
+								{
+									"key": "units",
+									"value": "{{units}}"
+								},
+								{
+									"key": "appid",
+									"value": "{{API Key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "With Different Language",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.openweathermap.org/data/2.5/weather?q={{city}}&lang={{lang}}&appid={{API Key}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{{city}}"
+								},
+								{
+									"key": "lang",
+									"value": "{{lang}}"
+								},
+								{
+									"key": "appid",
+									"value": "{{API Key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "In XML Format",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"pm.test(\"Response body is in XML\", function () {",
+									"    var responseJson = xml2Json(responseBody);",
+									"    pm.expect(responseJson).to.be.exist;",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.openweathermap.org/data/2.5/weather?q={{city}}&mode={{mode}}&appid={{API Key}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{{city}}"
+								},
+								{
+									"key": "mode",
+									"value": "{{mode}}"
+								},
+								{
+									"key": "appid",
+									"value": "{{API Key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Edge Cases",
+			"item": [
+				{
+					"name": "City param",
+					"item": [
+						{
+							"name": "Non-Existing City",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});",
+											"",
+											"pm.test(\"Response body contains error message: City not found\", function () {",
+											"    var responseBody = pm.response.json();",
+											"    pm.expect(responseBody.message).to.be.equal('city not found');",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.openweathermap.org/data/2.5/weather?q=QWERTY&appid={{API Key}}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"weather"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "QWERTY"
+										},
+										{
+											"key": "appid",
+											"value": "{{API Key}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Empty City",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});",
+											"",
+											"pm.test(\"Response body contains error message: Nothing to geocode\", function () {",
+											"    var responseBody = pm.response.json();",
+											"    pm.expect(responseBody.message).to.be.equal('Nothing to geocode');",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.openweathermap.org/data/2.5/weather?q=&appid={{API Key}}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"weather"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": ""
+										},
+										{
+											"key": "appid",
+											"value": "{{API Key}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "City Special Characters",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.openweathermap.org/data/2.5/weather?q=São Luís&appid={{API Key}}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"weather"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "São Luís"
+										},
+										{
+											"key": "appid",
+											"value": "{{API Key}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "City ID param",
+					"item": [
+						{
+							"name": "Negative City ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});",
+											"",
+											"pm.test(\"Response body contains error message: Invalid ID\", function () {",
+											"    var responseBody = pm.response.json();",
+											"    pm.expect(responseBody.message).to.be.equal('Invalid ID');",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.openweathermap.org/data/2.5/weather?id=-99999&appid={{API Key}}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"weather"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "-99999"
+										},
+										{
+											"key": "appid",
+											"value": "{{API Key}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Non-Existing City ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});",
+											"",
+											"pm.test(\"Response body contains error message: city not found\", function () {",
+											"    var responseBody = pm.response.json();",
+											"    pm.expect(responseBody.message).to.be.equal('city not found');",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.openweathermap.org/data/2.5/weather?id=125445&appid={{API Key}}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"weather"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "125445"
+										},
+										{
+											"key": "appid",
+											"value": "{{API Key}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Empty City ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});",
+											"",
+											"pm.test(\"Response body contains error message: Nothing to geocode\", function () {",
+											"    var responseBody = pm.response.json();",
+											"    pm.expect(responseBody.message).to.be.equal('Nothing to geocode');",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.openweathermap.org/data/2.5/weather?id=&appid={{API Key}}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"weather"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": ""
+										},
+										{
+											"key": "appid",
+											"value": "{{API Key}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Lon and Lat param",
+					"item": [
+						{
+							"name": "Empty Lat",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});",
+											"",
+											"pm.test(\"Response body contains error message: Nothing to geocode\", function () {",
+											"    var responseBody = pm.response.json();",
+											"    pm.expect(responseBody.message).to.be.equal('Nothing to geocode');",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.openweathermap.org/data/2.5/weather?lat=&lon={{lon}}&appid={{API Key}}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"weather"
+									],
+									"query": [
+										{
+											"key": "lat",
+											"value": ""
+										},
+										{
+											"key": "lon",
+											"value": "{{lon}}"
+										},
+										{
+											"key": "appid",
+											"value": "{{API Key}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Empty Lon",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});",
+											"",
+											"pm.test(\"Response body contains error message: Nothing to geocode\", function () {",
+											"    var responseBody = pm.response.json();",
+											"    pm.expect(responseBody.message).to.be.equal('Nothing to geocode');",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.openweathermap.org/data/2.5/weather?lat={{lat}}&lon=&appid={{API Key}}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"weather"
+									],
+									"query": [
+										{
+											"key": "lat",
+											"value": "{{lat}}"
+										},
+										{
+											"key": "lon",
+											"value": ""
+										},
+										{
+											"key": "appid",
+											"value": "{{API Key}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Empty Lat and Lon",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});",
+											"",
+											"pm.test(\"Response body contains error message: Nothing to geocode\", function () {",
+											"    var responseBody = pm.response.json();",
+											"    pm.expect(responseBody.message).to.be.equal('Nothing to geocode');",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.openweathermap.org/data/2.5/weather?lat= &lon= &appid={{API Key}}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"weather"
+									],
+									"query": [
+										{
+											"key": "lat",
+											"value": " "
+										},
+										{
+											"key": "lon",
+											"value": " "
+										},
+										{
+											"key": "appid",
+											"value": "{{API Key}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid Lat",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});",
+											"",
+											"pm.test(\"Response body contains error message: Wrong latitude\", function () {",
+											"    var responseBody = pm.response.json();",
+											"    pm.expect(responseBody.message).to.be.equal('wrong latitude');",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.openweathermap.org/data/2.5/weather?lat=1000000&lon={{lon}}&appid={{API Key}}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"weather"
+									],
+									"query": [
+										{
+											"key": "lat",
+											"value": "1000000"
+										},
+										{
+											"key": "lon",
+											"value": "{{lon}}"
+										},
+										{
+											"key": "appid",
+											"value": "{{API Key}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid Lon",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});",
+											"",
+											"pm.test(\"Response body contains error message: Wrong longitude\", function () {",
+											"    var responseBody = pm.response.json();",
+											"    pm.expect(responseBody.message).to.be.equal('wrong longitude');",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.openweathermap.org/data/2.5/weather?lat={{lat}}&lon=10000&appid={{API Key}}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"weather"
+									],
+									"query": [
+										{
+											"key": "lat",
+											"value": "{{lat}}"
+										},
+										{
+											"key": "lon",
+											"value": "10000"
+										},
+										{
+											"key": "appid",
+											"value": "{{API Key}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Zip Code param",
+					"item": [
+						{
+							"name": "Empty Zip Code",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response body contains error message: Nothing to geocode\", function () {",
+											"    var responseBody = pm.response.json();",
+											"    pm.expect(responseBody.message).to.be.equal('Nothing to geocode');",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.openweathermap.org/data/2.5/weather?zip=&appid={{API Key}}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"weather"
+									],
+									"query": [
+										{
+											"key": "zip",
+											"value": ""
+										},
+										{
+											"key": "appid",
+											"value": "{{API Key}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid Zip Code",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Response body contains error message: City not found\", function () {",
+											"    var responseBody = pm.response.json();",
+											"    pm.expect(responseBody.message).to.be.equal('city not found');",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.openweathermap.org/data/2.5/weather?zip=9999999&appid={{API Key}}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"weather"
+									],
+									"query": [
+										{
+											"key": "zip",
+											"value": "9999999"
+										},
+										{
+											"key": "appid",
+											"value": "{{API Key}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "General",
+					"item": [
+						{
+							"name": "Invalid API",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Response body contains error message: Nothing to geocode\", function () {",
+											"    var responseBody = pm.response.json();",
+											"    pm.expect(responseBody.message).to.be.contain('Invalid API key');",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.openweathermap.org/data/2.5/weather?q={{city}}&appid=RANDOMAPI",
+									"protocol": "https",
+									"host": [
+										"api",
+										"openweathermap",
+										"org"
+									],
+									"path": [
+										"data",
+										"2.5",
+										"weather"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "{{city}}"
+										},
+										{
+											"key": "appid",
+											"value": "RANDOMAPI"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
